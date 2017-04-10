@@ -1,7 +1,8 @@
 P=glist
 OBJECTS=
-CFLAGS = -g -Wall -O3 -I/usr/local/include
-LDLIBS= -L/usr/local/Cellar/glib/2.52.0/glib-2.0/include/
+CFLAGS= -pg -Wall -O3 $(glib_includes)
+LDLIBS=$(glib_libs)
 CC=gcc
-
+glib_includes=$(shell pkg-config --cflags glib-2.0)
+glib_libs=$(shell pkg-config --libs glib-2.0)
 $(P): $(OBJECTS)

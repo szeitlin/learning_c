@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <glibconfig.h>
+#include <glib.h>
 
 GList *list;
 
