@@ -17,17 +17,10 @@ int main(void)
     printf("\nAge?");
     scanf("%d", &age);
 
-    if((age > 25 && major == 1) && (college == 3 || college == 1))
-        interview = true;
-
-    if(college == 2 && major == 1)
-        interview = true;
-
-    if(college == 1 && major == 2 && !(age > 28))
-        interview = true;
-
-    if(college == 2 && (major == 2 || major == 3) && age > 25)
-        interview = true;
+    interview = (age>25 && major==1 && college!=2) ||
+                (college==2 && major==1) ||
+                (college==1 && major==2 && age<=28) ||
+                (college==2 && age>25 && major!=1);
 
     if(interview)
         printf("\n\nSchedule an onsite!\n");
