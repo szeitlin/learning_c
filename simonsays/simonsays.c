@@ -3,12 +3,13 @@
 #include <stdbool.h>
 #include <stdlib.h>             //for srand and rand
 #include <time.h>
+#include <unistd.h>             //for sleep()
 
 int main(void)
 {
 
     char another_game = 'Y';
-    const unsigned int DELAY = 5;   //for multiplying clocks_per_sec to convert clock_ticks to seconds
+    const unsigned int DELAY = 1;   //for multiplying clocks_per_sec to convert clock_ticks to seconds
     bool correct = true;
     unsigned int tries = 0;
     unsigned int digits = 0;        //how many digits in the current sequence
@@ -49,17 +50,20 @@ int main(void)
             for(unsigned int i = 1; i <= digits; ++i)
                 printf("%d ", rand() % 10);
 
+            fflush(stdout);
+
             for( ; clock() - wait_start < DELAY*CLOCKS_PER_SEC; );          //wait
+            //sleep(DELAY);
 
-            //hide the sequence from the player - this is working too well!
+            //hide the sequence from the player
 
-            //printf("\r");                  //go to beginning of the line
+            //go to beginning of the line
+            printf("\r");
 
-            //for(unsigned int i = 1; i <= digits; ++i)
-            //    printf("  ");             //two spaces
+            for(unsigned int i = 1; i <= digits; ++i)
+                printf("  ");                                               //two spaces
 
             // prompt the player to try to match the sequence
-
             if(tries == 1)
                 printf("\nYour turn! Don't forget the spaces between the numbers!\n");
             else
@@ -88,8 +92,8 @@ int main(void)
 
             //output score
             printf("%s\n", correct ? "Correct!" : "Wrong!");
+            printf("Your score is %d\n", score);
         }
-            printf("Your score is %d", score);
 
             // don't forget to clear the keyboard buffer!
             // this is important if any incorrect digits are entered, the loop exits and the leftovers remain
@@ -98,8 +102,9 @@ int main(void)
 
             //check if new game required
             printf("\n Do you want to play again (y/n)? ");
-            scanf("%c", &another_game);
-    } while(toupper(another_game) == 'Y');
 
+            scanf("%c", &another_game);
+
+    } while(toupper(another_game) == 'Y');
       return 0;
 }
