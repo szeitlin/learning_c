@@ -34,3 +34,4 @@ int main(void)
     printf("\nYou didn't guess in 3 tries. The number was %d\n", chosen);
     return 0;
 }
+
