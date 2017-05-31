@@ -11,16 +11,16 @@ int main(void)
 
     //displayed board is 1-indexed, but actual checking will be done with 0-index
     unsigned int board[3][3] = {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}
+        {'1', '2', '3'},
+        {'4', '5', '6'},
+        {'7', '8', '9'}
                         };
 
 for(unsigned int i=0; i < 9 && winner == 0; ++i)
 {
-    printf(" %d | %d | %d\n", board[0][0], board[0][1], board[0][2]);
-    printf(" %d | %d | %d\n", board[1][0], board[1][1], board[1][2]);
-    printf(" %d | %d | %d\n", board[2][0], board[2][1], board[2][2]);
+    printf(" %c | %c | %c\n", board[0][0], board[0][1], board[0][2]);
+    printf(" %c | %c | %c\n", board[1][0], board[1][1], board[1][2]);
+    printf(" %c | %c | %c\n", board[2][0], board[2][1], board[2][2]);
 
     //player 1 gets odd turns and X, player 2 gets even turns and O
     player = i%2 + 1;
@@ -55,9 +55,9 @@ for(unsigned int i=0; i < 9 && winner == 0; ++i)
     }
 }
     printf("\n");
-    printf(" %d | %d | %d\n", board[0][0], board[0][1], board[0][2]);
-    printf(" %d | %d | %d\n", board[1][0], board[1][1], board[1][2]);
-    printf(" %d | %d | %d\n", board[2][0], board[2][1], board[2][2]);
+    printf(" %c | %c | %c\n", board[0][0], board[0][1], board[0][2]);
+    printf(" %c | %c | %c\n", board[1][0], board[1][1], board[1][2]);
+    printf(" %c | %c | %c\n", board[2][0], board[2][1], board[2][2]);
 
     if(winner)
         printf("\n Congratulations player %d, you won!\n", winner);
