@@ -13,7 +13,7 @@ int main(void)
 
     int headsize[12]={164,166,169,172,175,178,181,184,188,191,194,197}; //in 1/8 inch increments
 
-    char *psize = *size;        // array of pointers
+    char *psize = *size;        // whole first row: 1D array of chars, and it has to be char* because *size is a char*
     int *pheadsize = headsize;  // pointer corresponding to the headsize array
 
     float cranium = 0.0f;       //in decimal inches
@@ -22,7 +22,7 @@ int main(void)
 
     printf("\nEnter the circumference of your head above your eyebrows in inches as a decimal: ");
 
-    scanf( " %f, &cranium");
+    scanf(" %f", &cranium);
 
     your_head = (int)(8.0f*cranium);
 
@@ -34,7 +34,7 @@ int main(void)
         {
         if(your_head > *(pheadsize + i - 1) && your_head <= *(pheadsize +i))
         {
-            hat_found = true;
+            hat_found = true; //use whatever i you're at in the next part
             break;
         }
     }
@@ -42,10 +42,10 @@ int main(void)
 if(hat_found)
 {
     printf("\nYour hat size is %c %c%c%c\n",
-        *(psize +i),                                //1st row of size array
-        *(psize +1*sizeof(*size)/sizeof(**size)+i) //2nd row
-        (*(psize + 1*sizeof(*size)/sizeof(**size)+i)==' ') ? ' ': '/',
-        *(psize + 2* sizeof(*size)/sizeof(**size)+i)); //3rd row
+        *(psize +i),                                //ith element of 1st row of size array == psize[i]
+        *(psize +   sizeof(*size)/sizeof(**size)+i), //2nd row; note that sizeof(array) gives the length of the array, sizeof(**size) is sizeof(char) which is 1
+        (*(psize +  sizeof(*size)/sizeof(**size)+i)==' ') ? ' ': '/',
+        *(psize + 2*sizeof(*size)/sizeof(**size)+i)); //3rd row
 }
 else
 {
