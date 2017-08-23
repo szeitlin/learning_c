@@ -15,8 +15,8 @@ int main(void)
     total = total < 4 ? 4 : total; 
 
     //allocate memory
-    pPrimes = (unsigned long long*)malloc(total*sizeof(unsigned long long));
-    if(!pPrimes)
+    pPrimes = calloc((size_t)total, sizeof(unsigned long long));
+    if(pPrimes==NULL)
     {
         printf("Not enough memory\n");
         return 1;
